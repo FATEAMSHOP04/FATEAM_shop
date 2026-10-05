@@ -98,6 +98,8 @@
     <form id="productForm">
 
       <label for="name">Nom du produit</label>
+      <label for="image">📷 Photo du produit</label>
+<input type="file" id="image" accept="image/*" required>
       <input
         type="text"
         id="name"
@@ -181,13 +183,34 @@
       button.disabled = true;
       button.textContent = "Enregistrement...";
 
+      const imageFile = document.getElementById("image").files[0];
+
+if (!imageFile) {
+  message.textContent = "❌ Choisis une photo.";
+  message.style.color = "red";
+  button.disabled = false;
+  button.textContent = "Publier l'article";
+  return;
+}
+const imageFile = document.getElementById("image").files[0];
+
+if (!imageFile) {
+  message.textContent = "❌ Choisis une photo.";
+  message.style.color = "red";
+  button.disabled = false;
+  button.textContent = "Publier l'article";
+  return;
+}
+
+const product = {
+const product = {
       const product = {
         name: document.getElementById("name").value.trim(),
         price: Number(document.getElementById("price").value),
         category: document.getElementById("category").value,
         description: document.getElementById("description").value.trim(),
         stock: Number(document.getElementById("stock").value),
-        image_url: null
+        image_url: imageUrl
       };
 
       const { data, error } = await supabaseClient
