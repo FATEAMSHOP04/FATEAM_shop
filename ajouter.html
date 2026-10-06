@@ -1,253 +1,171 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajouter un article - Fateam Shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajouter un article - Fateam Shop</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{
+box-sizing:border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f8c8dc, #c8a2c8);
-      min-height: 100vh;
-      padding: 20px;
-    }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#fff1f7,#eee4ff);
+color:#35283b;
+padding:20px;
+}
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    }
+.container{
+max-width:650px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 30px #8b5cf630;
+}
 
-    h1 {
-      text-align: center;
-      color: #8e4585;
-      margin-bottom: 25px;
-    }
+h1{
+text-align:center;
+color:#934c9d;
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 7px;
-      font-weight: bold;
-      color: #444;
-    }
+label{
+display:block;
+font-weight:bold;
+margin-top:18px;
+margin-bottom:7px;
+}
 
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 16px;
-    }
+input,select{
+width:100%;
+padding:13px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:16px;
+}
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:0;
+border-radius:12px;
+background:linear-gradient(135deg,#d94f9d,#8b5cf6);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
 
-    button {
-      width: 100%;
-      border: none;
-      padding: 15px;
-      margin-top: 25px;
-      border-radius: 12px;
-      background: #8e4585;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.result{
+margin-top:25px;
+}
 
-    button:disabled {
-      opacity: 0.6;
-    }
+textarea{
+width:100%;
+height:180px;
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd;
+font-family:monospace;
+}
 
-    .retour {
-      display: block;
-      text-align: center;
-      margin-top: 18px;
-      color: #8e4585;
-      text-decoration: none;
-    }
-
-    #message {
-      margin-top: 18px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#934c9d;
+text-decoration:none;
+font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <h1>➕ Ajouter un article</h1>
+<h1>➕ Ajouter un article</h1>
 
-    <form id="productForm">
+<label>Nom du produit</label>
+<input id="nom" type="text" placeholder="Exemple : Kit sourcils & cils">
 
-      <label for="name">Nom du produit</label>
-      <label for="image">📷 Photo du produit</label>
-<input type="file" id="image" accept="image/*" required>
-      <input
-        type="text"
-        id="name"
-        placeholder="Ex : Hijab Tape"
-        required
-      >
+<label>Prix</label>
+<input id="prix" type="number" placeholder="Exemple : 2500">
 
-      <label for="price">Prix (FCFA)</label>
-      <input
-        type="number"
-        id="price"
-        placeholder="Ex : 2500"
-        min="0"
-        required
-      >
+<label>Nom de l'image</label>
+<input id="image" type="text" placeholder="Exemple : nouveau-produit.jpeg">
 
-      <label for="category">Catégorie</label>
-      <select id="category" required>
-        <option value="">Choisir une catégorie</option>
-        <option value="Beauté">Beauté</option>
-        <option value="Cheveux">Cheveux</option>
-        <option value="Couture">Couture</option>
-        <option value="Maison">Maison</option>
-        <option value="Nouveautés">Nouveautés</option>
-      </select>
+<label>Catégorie</label>
+<select id="categorie">
+<option>Beauté</option>
+<option>Cheveux</option>
+<option>Couture</option>
+<option>Nouveautés</option>
+</select>
 
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        placeholder="Décris ton produit..."
-        required
-      ></textarea>
+<button onclick="generer()">Générer le produit</button>
 
-      <label for="stock">Stock disponible</label>
-      <input
-        type="number"
-        id="stock"
-        placeholder="Ex : 10"
-        min="0"
-        value="1"
-        required
-      >
+<div class="result" id="resultat"></div>
 
-      <button type="submit" id="publishButton">
-        Publier l'article
-      </button>
+<a class="back" href="index.html">← Retour à Fateam Shop</a>
 
-    </form>
+</div>
 
-    <div id="message"></div>
+<script>
 
-    <a class="retour" href="index.html">
-      ← Retour à la boutique
-    </a>
+function generer(){
 
-  </div>
+const nom=document.getElementById("nom").value;
+const prix=document.getElementById("prix").value;
+const image=document.getElementById("image").value;
 
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+if(!nom || !prix || !image){
 
-  <script>
+alert("Veuillez remplir le nom, le prix et le nom de l'image.");
 
-    const SUPABASE_URL = "https://xwnfjpzxkjdrngidlmyk.supabase.co";
-
-    // Remplace uniquement le texte entre les guillemets
-    // par ta Publishable key Supabase.
-   const SUPABASE_KEY = "sb_publishable_........";
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-    const form = document.getElementById("productForm");
-    const button = document.getElementById("publishButton");
-    const message = document.getElementById("message");
-
-    form.addEventListener("submit", async function(event) {
-
-      event.preventDefault();
-
-      button.disabled = true;
-      button.textContent = "Enregistrement...";
-
-      const imageFile = document.getElementById("image").files[0];
-
-if (!imageFile) {
-  message.textContent = "❌ Choisis une photo.";
-  message.style.color = "red";
-  button.disabled = false;
-  button.textContent = "Publier l'article";
-  return;
-}
-const imageFile = document.getElementById("image").files[0];
-
-if (!imageFile) {
-  message.textContent = "❌ Choisis une photo.";
-  message.style.color = "red";
-  button.disabled = false;
-  button.textContent = "Publier l'article";
-  return;
+return;
 }
 
-const product = {
-const product = {
-      const product = {
-        name: document.getElementById("name").value.trim(),
-        price: Number(document.getElementById("price").value),
-        category: document.getElementById("category").value,
-        description: document.getElementById("description").value.trim(),
-        stock: Number(document.getElementById("stock").value),
-        image_url: imageUrl
-      };
+const code=`<article class="card">
+<img src="${image}">
+<div class="info">
+<h3>${nom}</h3>
+<div class="price">${Number(prix).toLocaleString("fr-FR")} FCFA</div>
+<button onclick="commander('${nom}')">Commander</button>
+</div>
+</article>`;
 
-      const { data, error } = await supabaseClient
-        .from("products")
-        .insert([product])
-        .select();
+document.getElementById("resultat").innerHTML=`
 
-      if (error) {
+<h3>✅ Produit généré</h3>
 
-        console.error(error);
+<p>Copiez ce code et ajoutez-le dans la section <b>Nos produits</b> de votre page index.html :</p>
 
-        message.textContent =
-          "❌ Erreur : " + error.message;
+<textarea id="code">${code}</textarea>
 
-        message.style.color = "red";
+<button onclick="copier()">📋 Copier le code</button>
 
-        button.disabled = false;
-        button.textContent = "Publier l'article";
+`;
 
-        return;
-      }
+}
 
-      message.textContent =
-        "✅ Article ajouté avec succès !";
+function copier(){
 
-      message.style.color = "green";
+const textarea=document.getElementById("code");
 
-      form.reset();
+textarea.select();
 
-      document.getElementById("stock").value = 1;
+navigator.clipboard.writeText(textarea.value);
 
-      button.disabled = false;
-      button.textContent = "Publier l'article";
+alert("✅ Code copié !");
 
-    });
+}
 
-  </script>
+</script>
 
 </body>
 </html>
