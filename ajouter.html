@@ -90,7 +90,8 @@ font-weight:bold;
 
 <h1>➕ Ajouter un article</h1>
 <label>Photo du produit</label>
-<input id="photo" type="file" accept="image/*">
+<input id="photo" type="file" accept="image/*"><br>
+<img id="preview" style="max-width:100%;margin-top:15px;border-radius:15px;display:none;">
 <label>Nom du produit</label>
 <input id="nom" type="text" placeholder="Exemple : Kit sourcils & cils">
 
@@ -118,7 +119,14 @@ font-weight:bold;
 
 <script>
 
-function generer(){
+function generer(){document.getElementById("photo").addEventListener("change", function(){
+const fichier=this.files[0];
+if(fichier){
+const image=document.getElementById("preview");
+image.src=URL.createObjectURL(fichier);
+image.style.display="block";
+}
+});
 
 const nom=document.getElementById("nom").value;
 const prix=document.getElementById("prix").value;
